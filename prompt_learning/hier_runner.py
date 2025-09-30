@@ -40,13 +40,11 @@ class HierarchicalPromptLearningRunner:
             param.requires_grad = False
         self.clip_model.float()
 
-        # ------------- Stage 1: manufacturer-level dataloaders (5 classes) -------------
         self.train_loader_stage1, self.val_loader_stage1, self.test_loader_stage1, \
             self.classes_stage1, self.num_classes_stage1 = pacemakers_dataloaders(
                 "./pacemakers", self.model_type, self.batch_size, collapse_to_manufacturer=True
             )
 
-        # ------------- Stage 2: fine-grained dataloaders (45 classes) -------------
         self.train_loader_stage2, self.val_loader_stage2, self.test_loader_stage2, \
             self.classes_stage2, self.num_classes_stage2 = pacemakers_dataloaders(
                 "./pacemakers", self.model_type, self.batch_size, collapse_to_manufacturer=False
@@ -87,7 +85,6 @@ class HierarchicalPromptLearningRunner:
         model = self.model_class(self.config, self.classes_stage2, self.clip_model, self._tokenizer).to(self.device)
         state_dict = torch.load(os.path.join(self.stage1_dir, "best_model.pt"), map_location=self.device)
 
-        # Extract only prompt_learner params, but skip prefix/suffix
         pretrained_prompts = {
             k: v for k, v in state_dict.items()
             if "prompt_learner" in k and not any(x in k for x in ["token_prefix", "token_suffix"])

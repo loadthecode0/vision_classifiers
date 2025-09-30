@@ -15,7 +15,6 @@ class CLIPZeroShot:
         """Create text prompts for each class"""
         prompts = []
         for class_name in class_names:
-            # Clean class name and create prompt
             clean_name = class_name.replace('_', ' ').lower()
             prompt = template.format(clean_name)
             prompts.append(prompt)
@@ -42,14 +41,11 @@ class CLIPZeroShot:
             for images, labels in dataloader:
                 images = images.to(self.device)
                 
-                # Encode images
                 image_features = self.model.encode_image(images)
                 image_features = F.normalize(image_features, p=2, dim=1)
                 
-                # Compute similarities
                 similarities = torch.matmul(image_features, text_features.T)
                 
-                # Get predictions
                 predictions = similarities.argmax(dim=1)
                 
                 all_predictions.extend(predictions.cpu().numpy())

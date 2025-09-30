@@ -6,20 +6,18 @@ import json
 
 def calculate_metrics(y_true, y_pred, y_scores, num_classes, topk: int = 1):
     """Calculate evaluation metrics"""
-    # Top-1 Accuracy
+    
     top1_acc = accuracy_score(y_true, y_pred)
     topk_acc = None
     if topk and topk > 1:
         # y_scores: (N, C)
         topk_idx = np.argpartition(-y_scores, kth=min(topk-1, y_scores.shape[1]-1), axis=1)[:, :topk]
-        # Need true in topk set
+        
         matches = [y_true[i] in topk_idx[i] for i in range(len(y_true))]
         topk_acc = float(np.mean(matches))
     
-    # F1-score (macro average)
     f1 = f1_score(y_true, y_pred, average='macro')
     
-    # AUC-ROC (macro average for multi-class)
     try:
         if num_classes == 2:
             auc_roc = roc_auc_score(y_true, y_scores[:, 1])

@@ -39,7 +39,6 @@ class TextEncoder(nn.Module):
         x = x[torch.arange(x.shape[0]), tokenized_prompts.argmax(dim=-1)] @ self.text_projection
         return x
 
-# Configuration class for ease of use
 class MaPLeConfig:
     def __init__(self, n_ctx=4, ctx_init="", compound_prompts_depth=9, use_meta_net=False, use_vision_residual=True):
         self.n_ctx = n_ctx  # number of learnable tokens
@@ -106,43 +105,34 @@ class MaPLeVisionEncoder(nn.Module):
         x: image tensor
         vision_prompts: prompts derived from text prompts (the coupling!)
         """
-        # Initial vision encoding
         x = self.visual.conv1(x)
         x = x.reshape(x.shape[0], x.shape[1], -1)
         x = x.permute(0, 2, 1)
         
-        # Add class embedding
         class_embedding = self.visual.class_embedding.to(x.dtype) + \
                          torch.zeros(x.shape[0], 1, x.shape[-1], dtype=x.dtype, device=x.device)
         x = torch.cat([class_embedding, x], dim=1)
         x = x + self.visual.positional_embedding.to(x.dtype)
 
-        # Determine the number of prompt tokens
         if vision_prompts.dim() == 4:  # batched (batch, n_layers, n_ctx, vis_dim)
             batch_size = x.shape[0]
             n_prompts = vision_prompts.shape[2]  # n_ctx
-            # Expand first layer prompts to match batch size if needed
             prompt_tokens = vision_prompts[:, 0]  # (batch, n_ctx, vis_dim)
             if prompt_tokens.shape[0] == 1 and batch_size > 1:
                 prompt_tokens = prompt_tokens.expand(batch_size, -1, -1)
         else:  # not batched (n_layers, n_ctx, vis_dim)
             batch_size = x.shape[0]
             n_prompts = vision_prompts.shape[1]  # n_ctx
-            # Expand to match batch size
             prompt_tokens = vision_prompts[0].unsqueeze(0).expand(batch_size, -1, -1)
         
-        # Add prompt tokens to the sequence
         x = torch.cat([prompt_tokens, x], dim=1)
         
         x = self.visual.ln_pre(x)
         x = x.permute(1, 0, 2)  # NLD -> LND
         
-        # Forward through transformer with deep prompting
         for i, block in enumerate(self.visual.transformer.resblocks):
             if i < compound_prompts_depth:
-                # Update prompt tokens at this layer with text-derived prompts
                 if vision_prompts.dim() == 4:
-                    # Get prompts for this layer
                     layer_prompts = vision_prompts[:, i]  # (batch, n_ctx, vis_dim)
                     if layer_prompts.shape[0] == 1 and batch_size > 1:
                         layer_prompts = layer_prompts.expand(batch_size, -1, -1)
@@ -154,7 +144,6 @@ class MaPLeVisionEncoder(nn.Module):
         
         x = x.permute(1, 0, 2)  # LND -> NLD
         
-        # Extract class token (skipping prompt tokens)
         x = self.visual.ln_post(x[:, n_prompts, :])
         
         if self.visual.proj is not None:

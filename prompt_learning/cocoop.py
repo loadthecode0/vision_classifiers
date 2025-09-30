@@ -13,7 +13,6 @@ class ConditionalPromptLearner(nn.Module):
         ctx_dim = clip_model.ln_final.weight.shape[0]
         vis_dim = clip_model.visual.output_dim
         
-        # Meta-network to generate conditional context
         self.meta_net = nn.Sequential(
             nn.Linear(vis_dim, vis_dim // 16),
             nn.ReLU(),

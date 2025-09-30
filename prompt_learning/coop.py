@@ -15,18 +15,17 @@ class PromptLearner(nn.Module):
         print(ctx_dim)
 
         if cfg.ctx_init:
-            # Use given words to initialize context vectors
+            
             ctx_init = cfg.ctx_init.replace("_", " ")
             n_ctx = len(ctx_init.split(" "))
 
             # tokenize prompt -> then embed
-            prompt = clip.tokenize(ctx_init).cuda()  # Move to CUDA
+            prompt = clip.tokenize(ctx_init).cuda()  
             with torch.no_grad():
                 embedding = clip_model.token_embedding(prompt).type(dtype)
             ctx_vectors = embedding[0, 1 : 1 + n_ctx, :] # all except bos
             prompt_prefix = ctx_init
         else:
-            # Random initialization
             if cfg.csc:
                 print("Initializing class-specific contexts")
                 ctx_vectors = torch.empty(n_cls, n_ctx, ctx_dim, dtype=dtype)

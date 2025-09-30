@@ -34,7 +34,6 @@ def train_prompt_model(
     method: str = "coop"
 ) -> Tuple[List[float], List[float], List[float], List[float]]:
     
-    # Setup optimizer - only optimize prompt parameters
     if method.lower() == "coop" or method.lower() == "maple":
         trainable_params = model.prompt_learner.parameters()
     elif method.lower() == "cocoop":

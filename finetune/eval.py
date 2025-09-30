@@ -36,15 +36,13 @@ def evaluate_model(model, test_loader, device, topk: int = 1):
     all_labels = np.array(all_labels)
     all_probs = np.array(all_probs)
     
-    # Calculate metrics
     accuracy = accuracy_score(all_labels, all_predictions)
     f1 = f1_score(all_labels, all_predictions, average='weighted')
     
-    # For AUC-ROC, handle multi-class case
     try:
         auc_roc = roc_auc_score(all_labels, all_probs, multi_class='ovr', average='weighted')
     except ValueError:
-        auc_roc = 0.0  # If AUC cannot be computed
+        auc_roc = 0.0 
 
     topk_acc = None
     if topk and topk > 1:

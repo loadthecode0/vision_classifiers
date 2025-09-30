@@ -7,7 +7,6 @@ import os
 def train_model(model, train_loader, val_loader, epochs, lr, model_name, device, output_dir):
     """Train a prompt learning model"""
     
-    # Setup optimizer - only optimize prompt parameters
     if model_name == "CoOp" or model_name == "MaPLe":
         trainable_params = model.prompt_learner.parameters()
     elif model_name == "CoCoOp":
@@ -24,7 +23,6 @@ def train_model(model, train_loader, val_loader, epochs, lr, model_name, device,
     best_val_acc = 0
     
     for epoch in range(epochs):
-        # Training
         model.train()
         train_loss = 0
         train_correct = 0
@@ -56,7 +54,6 @@ def train_model(model, train_loader, val_loader, epochs, lr, model_name, device,
         train_losses.append(avg_train_loss)
         train_accs.append(train_acc)
 
-        # Validation
         model.eval()
         val_loss = 0
         val_correct = 0
@@ -82,7 +79,6 @@ def train_model(model, train_loader, val_loader, epochs, lr, model_name, device,
         print(f'  Train Loss: {avg_train_loss:.4f}, Train Acc: {train_acc:.2f}%')
         print(f'  Val Loss: {avg_val_loss:.4f}, Val Acc: {val_acc:.2f}%')
 
-        # Save best model
         if val_acc > best_val_acc:
             best_val_acc = val_acc
             save_path = os.path.join(output_dir, f'{model_name}_best.pth')

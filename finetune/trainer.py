@@ -78,13 +78,11 @@ def finetune(model, train_loader, val_loader, device, epochs=5, lr=1e-4, model_t
             val_topk_acc = 100 * val_topk_correct / val_total
             val_topk_accuracies.append(val_topk_acc)
         
-        # Store metrics
         train_losses.append(train_loss)
         train_accuracies.append(train_acc)
         val_losses.append(val_loss)
         val_accuracies.append(val_acc)
         
-        # Save best model
         if val_acc > best_val_acc:
             best_val_acc = val_acc
             best_model_state = model.state_dict().copy()
@@ -100,12 +98,10 @@ def finetune(model, train_loader, val_loader, device, epochs=5, lr=1e-4, model_t
         print(f'  Best Val Acc: {best_val_acc:.2f}%')
         print('-' * 50)
     
-    # Load best model
     if best_model_state is not None:
         model.load_state_dict(best_model_state)
         print(f'\nLoaded best model with validation accuracy: {best_val_acc:.2f}%')
     
-    # Save artifacts
     print(f"Output dir: {output_dir}")
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)

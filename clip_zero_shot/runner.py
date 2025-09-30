@@ -90,10 +90,8 @@ class ZeroShotRunner:
 
             print(class_prompts[:3])
             
-            # Encode each template prompt
             features = clip_classifier.encode_text_prompts(class_prompts)
             
-            # Average across templates
             mean_feature = features.mean(dim=0)
             mean_feature = mean_feature / mean_feature.norm()  # normalize
             all_text_features.append(mean_feature)
