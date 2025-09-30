@@ -223,9 +223,10 @@ def get_adv_transforms(resize_dim=224,model_type="clip"):
     return medical_transform
 
 def create_dataloaders(dataset_dir, model_type, batch_size=16, test_split=0.2, random_state=42, limit_rows=None):  
-    # Load datasets with train/validation split
-    print("Loading datasets and dataloaders...")
-    # Load the full training CSV
+    
+    # set this to override:
+    # dataset_dir = 
+
     train_df = pd.read_csv(dataset_dir + '/train.csv')
 
     # Split training data into train/validation sets (80/20 split)

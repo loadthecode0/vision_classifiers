@@ -32,6 +32,8 @@ pacemakers/
         ...
 ```
 
+To change the dataset path, you can set `dataset_dir` in Ln 228 of `utils/orthonet_data.py` or Ln 89 of `utils/pacemakers_data.py`
+
 
 Simply run the following command to run the experiment as described:
 

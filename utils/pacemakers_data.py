@@ -84,6 +84,10 @@ def get_transforms(augment=False, resize_dim=224):
 
 # Create dataloaders
 def create_dataloaders(dataset_dir, model_type, batch_size=16, collapse_to_manufacturer=False):
+
+    # set this to override:
+    # dataset_dir = 
+
     if model_type.lower() in ["imagenet", "clip"]:
         train_dataset = PacemakerDataset(dataset_dir, 'train', True, get_transforms(augment=True, resize_dim=224), collapse_to_manufacturer)
         val_dataset = PacemakerDataset(dataset_dir, 'val', True, get_transforms(augment=False, resize_dim=224), collapse_to_manufacturer)
