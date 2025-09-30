@@ -1,0 +1,7 @@
+{
+  "model_type": "imagenet",
+  "accuracy": 0.8,
+  "f1_score": 0.7953068359388649,
+  "auc_roc": 0.9787878787878788,
+  "num_classes": 12
+}

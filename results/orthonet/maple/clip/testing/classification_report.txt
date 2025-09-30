@@ -1,0 +1,18 @@
+                                      precision    recall  f1-score   support
+
+      Hip_DepuySynthes_Corail_Collar       0.79      0.73      0.76        15
+      Hip_DepuySynthes_Corail_NilCol       0.50      0.80      0.62        15
+Hip_JRIOrtho_FurlongEvolution_Collar       0.69      0.60      0.64        15
+Hip_JRIOrtho_FurlongEvolution_NilCol       0.55      0.40      0.46        15
+        Hip_SmithAndNephew_Anthology       0.54      0.47      0.50        15
+ Hip_SmithAndNephew_Polarstem_NilCol       0.58      0.73      0.65        15
+              Hip_Stryker_AccoladeII       0.86      0.40      0.55        15
+                  Hip_Stryker_Exeter       0.79      1.00      0.88        15
+            Knee_Depuy_Synthes_Sigma       0.88      1.00      0.94        15
+       Knee_SmithAndNephew_GenesisII       0.88      0.93      0.90        15
+         Knee_SmithAndNephew_Legion2       1.00      0.80      0.89        15
+            Knee_ZimmerBiomet_Oxford       1.00      1.00      1.00        15
+
+                            accuracy                           0.74       180
+                           macro avg       0.75      0.74      0.73       180
+                        weighted avg       0.75      0.74      0.73       180

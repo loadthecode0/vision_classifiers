@@ -1,0 +1,51 @@
+                                                precision    recall  f1-score   support
+
+                           BIO - Actros_Philos       1.00      0.60      0.75         5
+                                  BIO - Cyclos       0.83      1.00      0.91         5
+                                    BIO - Evia       1.00      0.80      0.89         5
+                         BOS - Altrua_Insignia       0.83      1.00      0.91         5
+          BOS - Autogen_Teligen_Energen_Cognis       1.00      1.00      1.00         5
+                        BOS - Contak Renewal 4       0.83      1.00      0.91         5
+                      BOS - Contak Renewal TR2       1.00      1.00      1.00         5
+  BOS - ContakTR_Discovery_Meridian_Pulsar Max       1.00      0.60      0.75         5
+                                  BOS - Emblem       1.00      1.00      1.00         5
+                                 BOS - Ingenio       1.00      1.00      1.00         5
+                               BOS - Proponent       1.00      0.80      0.89         5
+                            BOS - Ventak Prizm       1.00      1.00      1.00         5
+                               BOS - Visionist       0.83      1.00      0.91         5
+                                BOS - Vitality       0.80      0.80      0.80         5
+                                   MDT - AT500       0.75      0.60      0.67         5
+               MDT - Adapta_Kappa_Sensia_Versa       0.50      0.80      0.62         5
+                                  MDT - Advisa       0.75      0.60      0.67         5
+                                   MDT - Azure       0.80      0.80      0.80         5
+                                 MDT - C20_T20       1.00      0.40      0.57         5
+                                  MDT - C60 DR       0.71      1.00      0.83         5
+                       MDT - Claria_Evera_Viva       1.00      1.00      1.00         5
+MDT - Concerto_Consulta_Maximo_Protecta_Secura       1.00      0.80      0.89         5
+                                MDT - EnRhythm       1.00      0.60      0.75         5
+                              MDT - Insync III       0.62      1.00      0.77         5
+                                  MDT - Maximo       0.83      1.00      0.91         5
+                                  MDT - REVEAL       0.83      1.00      0.91         5
+                             MDT - REVEAL LINQ       0.80      0.80      0.80         5
+                                   MDT - Sigma       1.00      0.80      0.89         5
+                                  MDT - Syncra       1.00      1.00      1.00         5
+                                 MDT - Vita II       1.00      1.00      1.00         5
+                                   SOR - Elect       0.71      1.00      0.83         5
+                           SOR - Elect XS Plus       0.80      0.80      0.80         5
+                               SOR - MiniSwing       0.50      0.60      0.55         5
+                                   SOR - Neway       0.80      0.80      0.80         5
+                                  SOR - Ovatio       1.00      1.00      1.00         5
+                                   SOR - Reply       1.00      0.80      0.89         5
+                       SOR - Rhapsody_Symphony       1.00      1.00      1.00         5
+                                  SOR - Thesis       0.75      0.60      0.67         5
+                                  STJ - Accent       1.00      1.00      1.00         5
+                           STJ - Allure Quadra       1.00      1.00      1.00         5
+                                 STJ - Ellipse       1.00      1.00      1.00         5
+                                STJ - Identity       0.83      1.00      0.91         5
+                     STJ - Quadra Assura_Unify       1.00      1.00      1.00         5
+                                 STJ - Victory       1.00      0.80      0.89         5
+                                  STJ - Zephyr       0.80      0.80      0.80         5
+
+                                      accuracy                           0.87       225
+                                     macro avg       0.89      0.87      0.86       225
+                                  weighted avg       0.89      0.87      0.86       225

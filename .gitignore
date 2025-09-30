@@ -1,0 +1,9 @@
+*.zip
+*.pt
+*.ipynb
+*__pycache__*
+parse_res.py
+pacemakers
+orthonet
+!/results/pacemakers
+!/results/orthonet

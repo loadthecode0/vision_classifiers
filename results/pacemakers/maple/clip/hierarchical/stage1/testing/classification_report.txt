@@ -1,0 +1,11 @@
+              precision    recall  f1-score   support
+
+         BIO       1.00      0.53      0.70        15
+         BOS       0.84      0.85      0.85        55
+         MDT       0.90      0.95      0.93        80
+         SOR       0.82      0.93      0.87        40
+         STJ       0.94      0.86      0.90        35
+
+    accuracy                           0.88       225
+   macro avg       0.90      0.82      0.85       225
+weighted avg       0.89      0.88      0.88       225

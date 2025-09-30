@@ -1,0 +1,8 @@
+{
+  "model_type": "dinov2",
+  "accuracy": 0.8666666666666667,
+  "f1_score": 0.8647807747807748,
+  "auc_roc": 0.9962020202020202,
+  "num_classes": 45,
+  "top3_accuracy": 0.96
+}
